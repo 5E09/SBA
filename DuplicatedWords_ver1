@@ -1,0 +1,52 @@
+program DuplicatedWords;
+var
+  inputString: string;
+  words: array of string;
+  wordCount: array of record
+    word: string;
+    count: integer;
+  end;
+  i, j: integer;
+begin
+  writeln('Enter a string: ');
+  readln(inputString);
+  
+  // Split the input string into individual words
+  words := inputString.Split([' ']);
+
+  // Initialize the word count array
+  SetLength(wordCount, 0);
+
+  // Count the occurrences of each word
+  for i := 0 to Length(words) - 1 do
+  begin
+    // Check if the word is already in the word count array
+    for j := 0 to Length(wordCount) - 1 do
+    begin
+      if wordCount[j].word = words[i] then
+      begin
+        // Increment the count if the word is found
+        wordCount[j].count := wordCount[j].count + 1;
+        Break;
+      end;
+    end;
+
+    // Add the word to the word count array if it's not already present
+    if j = Length(wordCount) then
+    begin
+      SetLength(wordCount, j + 1);
+      wordCount[j].word := words[i];
+      wordCount[j].count := 1;
+    end;
+  end;
+
+  // Display the words that occur more than 5 times
+  writeln('Words that occur more than 5 times:');
+  for i := 0 to Length(wordCount) - 1 do
+  begin
+    if wordCount[i].count > 5 then
+      writeln(wordCount[i].word);
+  end;
+
+  readln;
+end.

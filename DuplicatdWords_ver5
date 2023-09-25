@@ -1,0 +1,61 @@
+program DuplicatedWords;
+
+uses SysUtils;
+
+type
+  IntArray = array[1..5] of string;
+
+var
+  vocab: IntArray;
+  inputText: string;
+  word: array of string;
+  wordCount: array of record
+    word: string;
+    count: integer;
+  end;
+  i, j: integer;
+
+begin
+  // Initialize vocabulary
+  vocab[1] := 'is';
+  vocab[2] := 'are';
+  vocab[3] := 'this';
+  vocab[4] := 'these';
+  vocab[5] := 'and';
+
+  writeln('Enter a text: ');
+  readln(inputText);
+
+  // Split inputText into words
+  word := inputText.Split(' ');
+
+  SetLength(wordCount, 0);
+
+  for i := 0 to Length(word) - 1 do
+  begin
+    for j := 0 to Length(wordCount) - 1 do
+    begin
+      if wordCount[j].word = word[i] then
+      begin
+        wordCount[j].count := wordCount[j].count + 1;
+        Break;
+      end;
+    end;
+
+    if j = Length(wordCount) then
+        begin
+          SetLength(wordCount, j + 1);
+          wordCount[j].word := word[i];
+          wordCount[j].count := 1;
+        end;
+      end;
+
+      writeln('Words that occur more than 5 times:');
+      for i := 0 to Length(wordCount) - 1 do
+      begin
+        if wordCount[i].count > 5 then
+          writeln(wordCount[i].word);
+      end;
+
+      readln;
+    end.                    

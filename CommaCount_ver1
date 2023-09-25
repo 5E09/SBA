@@ -1,0 +1,48 @@
+program CommaChecker;
+
+{$mode objfpc}{$H+}
+
+uses
+  Classes, SysUtils;
+
+var
+  UserText: String;    // Variable to store the user's input text
+  Sentence: String;    // Variable to store each sentence extracted from the input text
+  I, J: Integer;       // Loop variables
+  CommaCount: Integer; // Variable to count the number of commas in each sentence
+
+begin
+  Write('Enter your text: ');
+  ReadLn(UserText);
+  
+  I := 1;  // Initialize the loop variable I
+  J := 1;  // Initialize the loop variable J
+  
+  // Iterate through each character of the UserText
+  while I <= Length(UserText) do
+  begin
+    // Check if the current character is a period or it's the last character in the UserText
+    if (UserText[I] = '.') or (I = Length(UserText)) then
+    begin
+      // Extract the sentence from UserText starting from position J to I
+      Sentence := Copy(UserText, J, I - J + 1);
+      CommaCount := 0;  // Reset the CommaCount for each sentence
+      
+      // Iterate through each character of the Sentence
+      for J := 1 to Length(Sentence) do
+      begin
+        // Check if the current character is a comma
+        if Sentence[J] = ',' then
+          Inc(CommaCount);  // Increment the CommaCount
+      end;
+      
+      // Check if the CommaCount is greater than 3
+      if CommaCount > 3 then
+        WriteLn('Reminder: The following sentence has more than three commas:', #13#10, Sentence);
+        
+      J := I + 1;  // Update the starting position for the next sentence
+    end;
+    
+    Inc(I);  // Move to the next character in UserText
+  end;
+end.

@@ -1,0 +1,45 @@
+program CountWords;
+uses
+  SysUtils, Classes, StrUtils;
+
+var
+  wordList: TStringList;
+  userInput, word: string;
+  i: integer;
+
+const
+  wordsToCheck: array[1..5] of string = ('Then', 'But', 'Bad', 'Good', 'Easy');
+  synonyms: array[1..5] of string = ('Subsequently', 'However', 'Poor', 'Beneficial', 'Effortless');
+
+function CountOccurrences(const word: string; list: TStringList): Integer;
+var
+  i: Integer;
+begin
+  Result := 0;
+  for i := 0 to list.Count - 1 do
+  begin
+    if AnsiSameText(word, list[i]) then
+      Inc(Result);
+  end;
+end;
+
+begin
+  wordList := TStringList.Create;
+  try
+    writeln('Enter your text:');
+    readln(userInput);
+    wordList.Delimiter := ' ';
+    wordList.DelimitedText := userInput;
+
+    for i := Low(wordsToCheck) to High(wordsToCheck) do
+    begin
+      word := wordsToCheck[i];
+      if CountOccurrences(word, wordList) > 3 then
+      begin
+        writeln('Word "', word, '" appears more than three times. Consider using its synonym: ', synonyms[i]);
+      end;
+    end;
+  finally
+    wordList.Free;
+  end;
+end.         

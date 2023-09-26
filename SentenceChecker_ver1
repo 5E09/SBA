@@ -1,0 +1,45 @@
+program SentenceChecker;
+
+uses
+  SysUtils, StrUtils;
+
+var
+  text: string;
+  sentences: array of string;
+  sentence: string;
+  wordCount, commaCount: Integer;
+  i: Integer;
+
+begin
+  Write('Enter your text: ');
+  ReadLn(text);
+
+  // Split text into sentences
+  sentences := SplitString(text, '.');
+
+  for i := 0 to High(sentences) do
+  begin
+    sentence := Trim(sentences[i]);
+
+    // Count words and commas
+    wordCount := WordCount(sentence, [' ']);
+    commaCount := OccurrencesOfChar(sentence, ',');
+
+    // Check conditions
+    if (wordCount >= 25) or (commaCount > 3) then
+    begin
+      WriteLn('Sentence: "', sentence, '" has readability issues.');
+
+      if wordCount >= 25 then
+        WriteLn('Reminder: This sentence has ', wordCount, ' words. Consider shortening it to increase readability.');
+
+      if commaCount > 3 then
+        WriteLn('Reminder: This sentence has ', commaCount, ' commas. Consider reducing the number of commas to increase readability.');
+
+      WriteLn; // Print a newline for better readability
+    end;
+  end;
+
+  WriteLn('Text processing completed.');
+  ReadLn; // Pause at the end
+end;                                      

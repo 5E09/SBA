@@ -14,6 +14,7 @@ type
   end;
 
 var
+  inputFile: TextFile;
   text: string;
   words: array of string;
   wordCounts: array of TWordCount;
@@ -112,11 +113,19 @@ begin
 end;
 
 begin
-  writeln('Enter the text:');
-  ReadLn(text);
+  AssignFile(inputFile, hello.txt);
+  Reset(inputFile);
+
+  // Read the contents of the file
+  while not EOF(inputFile) do
+  begin
+    ReadLn(inputFile, text);
+    ProcessText;
+  end;
+
+  CloseFile(inputFile);
 
   InitializeSynonyms;
-  ProcessText;
   DisplayResults;
 
   // Free synonym lists

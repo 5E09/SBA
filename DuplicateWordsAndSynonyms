@@ -1,4 +1,4 @@
-program DuplicateWordsAndSynonyms;
+program duplicatewordsandsynonyms;
 
 uses
   SysUtils, StrUtils, Classes;
@@ -37,6 +37,7 @@ begin
   synonyms[2].Add('Terrible');
   synonyms[3].Add('Great');
   synonyms[4].Add('Simple');
+
 end;
 
 procedure ProcessText;
@@ -77,6 +78,7 @@ begin
       SetLength(wordCounts, index + 1);
       wordCounts[index].Word := word;
       wordCounts[index].Count := 1;
+
     end;
   end;
 end;
@@ -105,7 +107,8 @@ begin
               writeln('- ', suggestions[k]);
           end;
           writeln;
-          Break;
+
+
         end;
       end;
     end;
@@ -113,7 +116,7 @@ begin
 end;
 
 begin
-  AssignFile(inputFile, hello.txt);
+  AssignFile(inputFile, 'hello.txt');
   Reset(inputFile);
 
   // Read the contents of the file

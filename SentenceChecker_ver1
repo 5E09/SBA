@@ -8,6 +8,7 @@ var
   sentences: array of string;
   sentence: string;
   wordC, commaC: Integer;
+  inputFile: TextFile;
   i: Integer;
   function OccurrencesOfChar(const Str: string; Ch: Char): Integer;
 

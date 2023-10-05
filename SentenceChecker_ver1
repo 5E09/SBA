@@ -12,10 +12,7 @@ var
   i: Integer;
 
 begin
-  Write('Enter the path to your text file: ');
-  ReadLn(text);
-
-  AssignFile(inputFile, text);
+  AssignFile(inputFile, hello.txt);
   Reset(inputFile);
 
   // Read the contents of the file
@@ -55,4 +52,4 @@ begin
 
   WriteLn('Text processing completed.');
   ReadLn; // Pause at the end
-end.   
+end.

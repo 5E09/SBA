@@ -107,8 +107,6 @@ begin
               writeln('- ', suggestions[k]);
           end;
           writeln;
-
-
         end;
       end;
     end;

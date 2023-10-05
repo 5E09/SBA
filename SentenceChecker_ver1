@@ -4,25 +4,26 @@ uses
   SysUtils, StrUtils;
 
 var
-  inputFile: TextFile;
   text: string;
   sentences: array of string;
   sentence: string;
-  wordCount, commaCount: Integer;
+  wordC, commaC: Integer;
   i: Integer;
+  function OccurrencesOfChar(const Str: string; Ch: Char): Integer;
+var
+  i: Integer;
+begin
+  Result := 0;
+  for i := 1 to Length(Str) do
+  begin
+    if Str[i] = Ch then
+      Inc(Result);
+  end;
+end;
 
 begin
-  AssignFile(inputFile, hello.txt);
-  Reset(inputFile);
-
-  // Read the contents of the file
-  while not EOF(inputFile) do
-  begin
-    ReadLn(inputFile, sentence);
-    text := text + sentence + ' ';
-  end;
-
-  CloseFile(inputFile);
+  Write('Enter your text: ');
+  ReadLn(text);
 
   // Split text into sentences
   sentences := SplitString(text, '.');
@@ -30,21 +31,23 @@ begin
   for i := 0 to High(sentences) do
   begin
     sentence := Trim(sentences[i]);
+    wordC :=0;
+    commaC:=0;
 
     // Count words and commas
-    wordCount := WordCount(sentence, [' ']);
-    commaCount := OccurrencesOfChar(sentence, ',');
+    wordC := WordCount(sentence, [' ']);
+    commaC := OccurrencesOfChar(sentence, ',');
 
     // Check conditions
-    if (wordCount >= 25) or (commaCount > 3) then
+    if (wordC >= 25) or (commaC > 3) then
     begin
       WriteLn('Sentence: "', sentence, '" has readability issues.');
 
-      if wordCount >= 25 then
-        WriteLn('Reminder: This sentence has ', wordCount, ' words. Consider shortening it to increase readability.');
+      if wordC >= 25 then
+        WriteLn('Reminder: This sentence has ', wordC, ' words. Consider shortening it to increase readability.');
 
-      if commaCount > 3 then
-        WriteLn('Reminder: This sentence has ', commaCount, ' commas. Consider reducing the number of commas to increase readability.');
+      if commaC > 3 then
+        WriteLn('Reminder: This sentence has ', commaC, ' commas. Consider reducing the number of commas to increase readability.');
 
       WriteLn; // Print a newline for better readability
     end;

@@ -53,6 +53,19 @@ begin
     end;
   end;
 
+begin
+  AssignFile(inputFile, 'hello.txt');
+  Reset(inputFile);
+
+  // Read the contents of the file
+  while not EOF(inputFile) do
+  begin
+    ReadLn(inputFile, text);
+    ProcessText;
+  end;
+
+  CloseFile(inputFile);
+
   WriteLn('Text processing completed.');
   ReadLn; // Pause at the end
 end.

@@ -5,7 +5,7 @@ uses
 
 const
   DuplicateThreshold = 3;
-  WordsToCheck: array[1..5] of string = ('Happy', 'Sad', 'Good', 'Bad', 'Cold','Hot');
+  WordsToCheck: array[1..6] of string = ('Happy', 'Sad', 'Good', 'Bad', 'Cold','Hot');
 
 type
   TWordCount = record

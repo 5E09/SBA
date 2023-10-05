@@ -5,7 +5,7 @@ uses
 
 const
   DuplicateThreshold = 3;
-  WordsToCheck: array[1..5] of string = ('Then', 'But', 'Bad', 'Good', 'Easy');
+  WordsToCheck: array[1..5] of string = ('Happy', 'Sad', 'Good', 'Bad', 'Cold','Hot');
 
 type
   TWordCount = record
@@ -31,12 +31,14 @@ begin
   end;
 
   // Add sample synonyms for demonstration
-  synonyms[0].Add('Next');
-  synonyms[1].Add('However');
-  synonyms[1].Add('Yet');
-  synonyms[2].Add('Terrible');
-  synonyms[3].Add('Great');
-  synonyms[4].Add('Simple');
+  synonyms[0].Add('Delighted');
+  synonyms[0].Add('Cheerful');
+  synonyms[1].Add('Miserable');
+  synonyms[1].Add('Depressed');
+  synonyms[2].Add('Excellent');
+  synonyms[3].Add('Terrible');
+  synonyms[4].Add('Freezing');
+  synonyms[5].Add('Fevered');
 
 end;
 

@@ -31,14 +31,12 @@ begin
   end;
 
   // Add sample synonyms for demonstration
-  synonyms[0].Add('Delighted');
-  synonyms[0].Add('Cheerful');
-  synonyms[1].Add('Miserable');
-  synonyms[1].Add('Depressed');
-  synonyms[2].Add('Excellent');
-  synonyms[3].Add('Terrible');
-  synonyms[4].Add('Freezing');
-  synonyms[5].Add('Fevered');
+  synonyms[0].Add('contented, delighted, glad, joyful, joyous, pleasant');
+  synonyms[1].Add('miserable,bitter, heartbroken, mournful, unhappy');
+  synonyms[2].Add('excellent, great, satisfying, valuable, excellent');
+  synonyms[3].Add('awful, disagreeable, infamous, rotten, awful');
+  synonyms[4].Add('freezing, chilly, icy, cool, arctic, frosty');
+  synonyms[5].Add('boiling, searing, burning, heated, fevered');
 
 end;
 

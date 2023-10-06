@@ -1,58 +1,62 @@
 program SentenceChecker;
 
 uses
-  SysUtils, StrUtils;
+  SysUtils, StrUtils;
 
 var
-  text: string;
-  sentences: array of string;
-  sentence: string;
-  wordC, commaC: Integer;
-  i: Integer;
-  function OccurrencesOfChar(const Str: string; Ch: Char): Integer;
+  text: string;
+  sentences: array of string;
+  sentence: string;
+  wordC, commaC: Integer;
+  i: Integer;
+  tfile: TextFile;
+
+function OccurrencesOfChar(const Str: string; Ch: Char): Integer;
 var
-  i: Integer;
+  i: Integer;
 begin
-  Result := 0;
-  for i := 1 to Length(Str) do
-  begin
-    if Str[i] = Ch then
-      Inc(Result);
-  end;
+  Result := 0;
+  for i := 1 to Length(Str) do
+  begin
+    if Str[i] = Ch then
+      Inc(Result);
+  end;
 end;
 
 begin
-  Write('Enter your text: ');
-  ReadLn(text);
+  AssignFile(tfile, 'hello.txt');
+  Reset(tfile);
+  Readln(tfile, text);
+  CloseFile(tfile);
 
-  // Split text into sentences
-  sentences := SplitString(text, '.');
+  // Split text into sentences
+  sentences := SplitString(text, '.');
 
-  for i := 0 to High(sentences) do
-  begin
-    sentence := Trim(sentences[i]);
-    wordC :=0;
-    commaC:=0;
+  for i := 0 to High(sentences) do
+  begin
+    sentence := Trim(sentences[i]);
+    wordC := 0;
+    commaC := 0;
 
-    // Count words and commas
-    wordC := WordCount(sentence, [' ']);
-    commaC := OccurrencesOfChar(sentence, ',');
+    // Count words and commas
+    wordC := WordCount(sentence, [' ']);
+    commaC := OccurrencesOfChar(sentence, ',');
 
-    // Check conditions
-    if (wordC >= 25) or (commaC > 3) then
-    begin
-      WriteLn('Sentence: "', sentence, '" has readability issues.');
+    // Check conditions
+    if (wordC >= 25) or (commaC > 3) then
+    begin
+      WriteLn('Sentence: "', sentence, '" has readability issues.');
 
-      if wordC >= 25 then
-        WriteLn('Reminder: This sentence has ', wordC, ' words. Consider shortening it to increase readability.');
+      if wordC >= 25 then
+        WriteLn('Reminder: This sentence has ', wordC, ' words. Consider shortening it to increase readability.');
 
-      if commaC > 3 then
-        WriteLn('Reminder: This sentence has ', commaC, ' commas. Consider reducing the number of commas to increase readability.');
+      if commaC > 3 then
+        WriteLn('Reminder: This sentence has ', commaC, ' commas. Consider reducing the number of commas to increase readability.');
 
-      WriteLn; // Print a newline for better readability
-    end;
-  end;
+      WriteLn; // Print a newline for better readability
+    end;
+  end;
 
-  WriteLn('Text processing completed.');
-  ReadLn; // Pause at the end
+  WriteLn('Text processing completed.');
+  ReadLn; // Pause at the end
 end.

@@ -4,7 +4,7 @@ uses
   SysUtils, StrUtils, Classes;
 
 const
-  DuplicateThreshold = 3;
+  DuplicateThreshold = 2;
   WordsToCheck: array[1..6] of string = ('Happy', 'Sad', 'Good', 'Bad', 'Cold','Hot');
 
 type
@@ -31,12 +31,12 @@ begin
   end;
 
   // Add sample synonyms for demonstration
-  synonyms[0].Add('contented, delighted, glad, joyful, joyous, pleasant');
-  synonyms[1].Add('miserable,bitter, heartbroken, mournful, unhappy');
-  synonyms[2].Add('excellent, great, satisfying, valuable, excellent');
-  synonyms[3].Add('awful, disagreeable, infamous, rotten, awful');
-  synonyms[4].Add('freezing, chilly, icy, cool, arctic, frosty');
-  synonyms[5].Add('boiling, searing, burning, heated, fevered');
+  synonyms[1].Add('contented, delighted, glad, joyful, joyous, pleasant');
+  synonyms[2].Add('miserable,bitter, heartbroken, mournful, unhappy');
+  synonyms[3].Add('excellent, great, satisfying, valuable, excellent');
+  synonyms[4].Add('awful, disagreeable, infamous, rotten, awful');
+  synonyms[5].Add('freezing, chilly, icy, cool, arctic, frosty');
+  synonyms[6].Add('boiling, searing, burning, heated, fevered');
 
 end;
 
